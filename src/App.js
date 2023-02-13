@@ -27,7 +27,11 @@ class App extends Component {
         <Welcome />
         <Row className="mx-2">
           <Col xs={9}>
-            <BookList props={fantasy} setSelected={this.setSelected} />
+            <BookList
+              props={fantasy}
+              setSelected={this.setSelected}
+              selected={this.state.selected}
+            />
           </Col>
           <Col xs={3}>
             <CommentArea selected={this.state.selected} />

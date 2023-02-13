@@ -34,7 +34,7 @@ class CommentArea extends Component {
   };
 
   componentDidMount = () => {
-    console.log("Effettuo il mount");
+    /* console.log("Effettuo il mount"); */
     this.fetchComments();
   };
 
@@ -45,7 +45,7 @@ class CommentArea extends Component {
   }
 
   render() {
-    console.log("Effettuo il render");
+    /* console.log("Effettuo il render"); */
     return (
       <>
         <h5>Comments:</h5>

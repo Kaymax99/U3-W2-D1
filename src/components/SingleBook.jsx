@@ -11,7 +11,12 @@ class SingleBook extends Component {
       <>
         <Col xs={12} md={6} lg={3} className="my-2">
           <Card
-            style={{ border: this.state.selected ? "2px solid red" : "" }}
+            style={{
+              border:
+                this.props.selected === this.props.book.asin
+                  ? "2px solid red"
+                  : "",
+            }}
             className="text-center"
             /* onClick={() => this.setState({ selected: !this.state.selected })} */
             onClick={() => this.props.setSelected(this.props.book.asin)}

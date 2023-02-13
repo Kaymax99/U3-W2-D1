@@ -6,8 +6,8 @@ class CommentList extends Component {
     return (
       <ListGroup style={{ border: "none" }}>
         {this.props.array.length === 0 ? (
-          <ListGroup.Item>
-            <p>Nessun commento trovato :c </p>
+          <ListGroup.Item style={{ border: "none" }} className="bg-light">
+            Nessun commento trovato :c
           </ListGroup.Item>
         ) : (
           this.props.array.map((comment) => (

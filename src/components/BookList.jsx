@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Col, Container, Form, Row } from "react-bootstrap";
+import { Form, Row } from "react-bootstrap";
 import SingleBook from "./SingleBook";
 
 class BookList extends Component {
@@ -36,6 +36,7 @@ class BookList extends Component {
                 book={books}
                 key={books.asin}
                 setSelected={this.props.setSelected}
+                selected={this.props.selected}
               />
             ))}
         </Row>
