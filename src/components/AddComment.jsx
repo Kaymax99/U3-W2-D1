@@ -42,7 +42,9 @@ class AddComment extends Component {
 
       if (res.ok) {
         this.props.addedComment(this.props.selected);
-        alert("Sent!");
+        alert(
+          "Thank you for sending your review! You should be able to see it right away."
+        );
       } else {
         alert("Unable to submit your review now, please try again later");
       }
