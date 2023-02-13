@@ -55,7 +55,7 @@ class CommentArea extends Component {
           <p>Select a book to view its comments!</p>
         )}
 
-        <AddComment id={this.props.id} />
+        <AddComment id={this.props.selected} />
       </>
     );
   }

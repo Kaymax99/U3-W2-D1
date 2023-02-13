@@ -6,10 +6,10 @@ import Welcome from "./components/Welcome";
 /* import AllTheBooks from "./components/AllTheBooks"; */
 import MyFooter from "./components/MyFooter.jsx";
 import BookList from "./components/BookList";
+import { Component } from "react";
 import fantasy from "./data/fantasy.json";
 import { Col, Row } from "react-bootstrap";
 import CommentArea from "./components/CommentArea";
-import { Component } from "react";
 
 class App extends Component {
   state = {
