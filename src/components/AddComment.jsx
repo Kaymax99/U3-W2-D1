@@ -6,7 +6,7 @@ class AddComment extends Component {
     comment: {
       author: "",
       comment: "",
-      elementId: this.props.id,
+      elementId: this.props.selected,
       rate: 0,
     },
   };
@@ -25,6 +25,7 @@ class AddComment extends Component {
 
   handleSumbit = async (e) => {
     e.preventDefault();
+
     try {
       const res = await fetch(
         "https://striveschool-api.herokuapp.com/api/comments/",
@@ -40,7 +41,8 @@ class AddComment extends Component {
       );
 
       if (res.ok) {
-        alert("Thank you for submitting your review!");
+        this.props.addedComment(this.props.selected);
+        alert("Sent!");
       } else {
         alert("Unable to submit your review now, please try again later");
       }
@@ -48,6 +50,27 @@ class AddComment extends Component {
       alert("Error: ", error);
     }
   };
+
+  componentDidMount = () => {
+    console.log("Effettuo il mount");
+    this.setState({
+      comment: {
+        ...this.state.comment,
+        elementId: this.props.selected,
+      },
+    });
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.selected !== this.props.selected) {
+      this.setState({
+        comment: {
+          ...this.state.comment,
+          elementId: this.props.selected,
+        },
+      });
+    }
+  }
 
   render() {
     return (
@@ -59,7 +82,7 @@ class AddComment extends Component {
             <Form.Select
               aria-label="Default select example"
               onChange={(e) => {
-                console.log(e.target.value);
+                /* console.log(e.target.value); */
 
                 // this.setState({
                 //   reservation: { ...this.state.reservation, numberOfPeople: parseInt(e.target.value) }

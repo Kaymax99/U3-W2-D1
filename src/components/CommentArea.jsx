@@ -5,6 +5,7 @@ import CommentList from "./CommentsList";
 class CommentArea extends Component {
   state = {
     comments: [],
+    lastCommentID: null,
   };
 
   fetchComments = async () => {
@@ -33,8 +34,13 @@ class CommentArea extends Component {
     }
   };
 
+  addedComment = (value) => {
+    this.setState({ lastCommentID: value });
+    this.fetchComments();
+  };
+
   componentDidMount = () => {
-    /* console.log("Effettuo il mount"); */
+    console.log("Effettuo il mount");
     this.fetchComments();
   };
 
@@ -45,7 +51,7 @@ class CommentArea extends Component {
   }
 
   render() {
-    /* console.log("Effettuo il render"); */
+    console.log("Effettuo il render");
     return (
       <>
         <h5>Comments:</h5>
@@ -55,7 +61,10 @@ class CommentArea extends Component {
           <p>Select a book to view its comments!</p>
         )}
 
-        <AddComment id={this.props.selected} />
+        <AddComment
+          selected={this.props.selected}
+          addedComment={this.addedComment}
+        />
       </>
     );
   }
