@@ -52,61 +52,59 @@ class AddComment extends Component {
   render() {
     return (
       <>
-        <Col xs={10} className="mx-auto">
-          <h5 className="mt-3">Submit your review!</h5>
-          <Form onSubmit={this.handleSumbit}>
-            <Form.Group className="mb-3">
-              <Form.Label>Vote</Form.Label>
-              <Form.Select
-                aria-label="Default select example"
-                onChange={(e) => {
-                  console.log(e.target.value);
+        <h5 className="mt-3">Submit your review!</h5>
+        <Form onSubmit={this.handleSumbit}>
+          <Form.Group className="mb-3">
+            <Form.Label>Vote</Form.Label>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => {
+                console.log(e.target.value);
 
-                  // this.setState({
-                  //   reservation: { ...this.state.reservation, numberOfPeople: parseInt(e.target.value) }
-                  // });
-                  this.handleChange("rate", e.target.value);
-                }}
-              >
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </Form.Select>
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Review</Form.Label>
-              <Form.Control
-                type="text"
-                as="textarea"
-                rows={3}
-                placeholder="Insert a comment here"
-                onChange={(e) => {
-                  console.log(e.target.value);
+                // this.setState({
+                //   reservation: { ...this.state.reservation, numberOfPeople: parseInt(e.target.value) }
+                // });
+                this.handleChange("rate", e.target.value);
+              }}
+            >
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </Form.Select>
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Review</Form.Label>
+            <Form.Control
+              type="text"
+              as="textarea"
+              rows={3}
+              placeholder="Insert a comment here"
+              onChange={(e) => {
+                console.log(e.target.value);
 
-                  // this.setState({ reservation: { ...this.state.reservation, specialRequests: e.target.value } });
-                  this.handleChange("comment", e.target.value);
-                }}
-              />
-            </Form.Group>
-            <Form.Group className="mb-2" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter your email"
-                onChange={(e) => {
-                  console.log(e.target.value);
-                  this.handleChange("author", e.target.value);
-                }}
-              />
-            </Form.Group>
+                // this.setState({ reservation: { ...this.state.reservation, specialRequests: e.target.value } });
+                this.handleChange("comment", e.target.value);
+              }}
+            />
+          </Form.Group>
+          <Form.Group className="mb-2" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter your email"
+              onChange={(e) => {
+                console.log(e.target.value);
+                this.handleChange("author", e.target.value);
+              }}
+            />
+          </Form.Group>
 
-            <Button variant="primary" className="mb-2" type="submit">
-              Submit
-            </Button>
-          </Form>
-        </Col>
+          <Button variant="primary" className="mb-2" type="submit">
+            Submit
+          </Button>
+        </Form>
       </>
     );
   }

@@ -7,16 +7,36 @@ import Welcome from "./components/Welcome";
 import MyFooter from "./components/MyFooter.jsx";
 import BookList from "./components/BookList";
 import fantasy from "./data/fantasy.json";
+import { Col, Row } from "react-bootstrap";
+import CommentArea from "./components/CommentArea";
+import { Component } from "react";
 
-function App() {
-  return (
-    <>
-      <MyNav />
-      <Welcome />
-      <BookList props={fantasy} />
-      <MyFooter />
-    </>
-  );
+class App extends Component {
+  state = {
+    selected: null,
+  };
+
+  setSelected = (value) => {
+    this.setState({ selected: value });
+  };
+
+  render() {
+    return (
+      <>
+        <MyNav />
+        <Welcome />
+        <Row className="mx-2">
+          <Col xs={9}>
+            <BookList props={fantasy} setSelected={this.setSelected} />
+          </Col>
+          <Col xs={3}>
+            <CommentArea selected={this.state.selected} />
+          </Col>
+        </Row>
+        <MyFooter />
+      </>
+    );
+  }
 }
 
 export default App;

@@ -10,7 +10,8 @@ class CommentArea extends Component {
   fetchComments = async () => {
     try {
       const res = await fetch(
-        "https://striveschool-api.herokuapp.com/api/comments/" + this.props.id,
+        "https://striveschool-api.herokuapp.com/api/comments/" +
+          this.props.selected,
         {
           headers: {
             Authorization:
@@ -31,18 +32,29 @@ class CommentArea extends Component {
       alert("Errore: " + error);
     }
   };
+
   componentDidMount = () => {
     console.log("Effettuo il mount");
     this.fetchComments();
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.selected !== this.props.selected) {
+      this.fetchComments();
+    }
+  }
 
   render() {
     console.log("Effettuo il render");
     return (
       <>
         <h5>Comments:</h5>
-        {/* {this.state.comments} */}
-        <CommentList array={this.state.comments} />
+        {this.props.selected ? (
+          <CommentList array={this.state.comments} />
+        ) : (
+          <p>Select a book to view its comments!</p>
+        )}
+
         <AddComment id={this.props.id} />
       </>
     );

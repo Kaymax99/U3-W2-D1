@@ -5,20 +5,26 @@ class CommentList extends Component {
   render() {
     return (
       <ListGroup style={{ border: "none" }}>
-        {this.props.array.map((comment) => (
-          <ListGroup.Item
-            style={{ border: "none" }}
-            key={comment._id}
-            className="bg-light"
-          >
-            <div>
-              <span>{comment.rate}⭐</span> <span>{comment.comment}</span>
-            </div>
-            <div>
-              <span className="text-muted">- {comment.author}</span>
-            </div>
+        {this.props.array.length === 0 ? (
+          <ListGroup.Item>
+            <p>Nessun commento trovato :c </p>
           </ListGroup.Item>
-        ))}
+        ) : (
+          this.props.array.map((comment) => (
+            <ListGroup.Item
+              style={{ border: "none" }}
+              key={comment._id}
+              className="bg-light"
+            >
+              <div>
+                <span>{comment.rate}⭐</span> <span>{comment.comment}</span>
+              </div>
+              <div>
+                <span className="text-muted">- {comment.author}</span>
+              </div>
+            </ListGroup.Item>
+          ))
+        )}
       </ListGroup>
     );
   }
