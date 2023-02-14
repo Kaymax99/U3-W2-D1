@@ -7,7 +7,7 @@ const CommentArea = (props) => {
     comments: [],
     lastCommentID: null,
   }; */
-  const [comments, setComment] = useState([]);
+  const [comments, setComments] = useState([]);
   const [lastCommentID, setlastCommentID] = useState(null);
 
   const fetchComments = async () => {
@@ -24,7 +24,7 @@ const CommentArea = (props) => {
       if (res.ok) {
         const data = await res.json();
         /*         console.log(data); */
-        setComment(data);
+        setComments(data);
       } else {
         alert("Impossibile effettuare il fetch");
       }

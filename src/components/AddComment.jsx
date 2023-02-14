@@ -19,16 +19,13 @@ const AddComment = (props) => {
   });
 
   const handleChange = (propertyName, propertyValue) => {
-    const value =
-      propertyName === "name" ? parseInt(propertyValue) : propertyValue;
-
     /* this.setState({
       comment: {
         ...this.state.comment,
         [propertyName]: value,
       },
     }); */
-    setComment({ ...comment, [propertyName]: value });
+    setComment({ ...comment, [propertyName]: propertyValue });
   };
 
   const handleSumbit = async (e) => {
