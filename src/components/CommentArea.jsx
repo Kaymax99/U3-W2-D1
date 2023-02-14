@@ -1,18 +1,19 @@
-import { Component } from "react";
+import { useEffect, useState } from "react";
 import AddComment from "./AddComment";
 import CommentList from "./CommentsList";
 
-class CommentArea extends Component {
-  state = {
+const CommentArea = (props) => {
+  /* state = {
     comments: [],
     lastCommentID: null,
-  };
+  }; */
+  const [comments, setComment] = useState([]);
+  const [lastCommentID, setlastCommentID] = useState(null);
 
-  fetchComments = async () => {
+  const fetchComments = async () => {
     try {
       const res = await fetch(
-        "https://striveschool-api.herokuapp.com/api/comments/" +
-          this.props.selected,
+        "https://striveschool-api.herokuapp.com/api/comments/" + props.selected,
         {
           headers: {
             Authorization:
@@ -22,10 +23,8 @@ class CommentArea extends Component {
       );
       if (res.ok) {
         const data = await res.json();
-        console.log(data);
-        this.setState({
-          comments: data,
-        });
+        /*         console.log(data); */
+        setComment(data);
       } else {
         alert("Impossibile effettuare il fetch");
       }
@@ -34,40 +33,37 @@ class CommentArea extends Component {
     }
   };
 
-  addedComment = (value) => {
-    this.setState({ lastCommentID: value });
-    this.fetchComments();
+  const addedComment = (value) => {
+    setlastCommentID(value);
+    fetchComments();
   };
 
-  componentDidMount = () => {
-    console.log("Effettuo il mount");
-    this.fetchComments();
-  };
+  /* componentDidMount = () => { */
+  useEffect(() => {
+    /* console.log("Effettuo il mount dei commenti"); */
+    fetchComments();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.selected]);
 
-  componentDidUpdate(prevProps, prevState) {
+  /*  componentDidUpdate(prevProps, prevState) {
     if (prevProps.selected !== this.props.selected) {
-      this.fetchComments();
+      fetchComments();
     }
-  }
+  } */
 
-  render() {
-    console.log("Effettuo il render");
-    return (
-      <>
-        <h5>Comments:</h5>
-        {this.props.selected ? (
-          <CommentList array={this.state.comments} />
-        ) : (
-          <p>Select a book to view its comments!</p>
-        )}
+  /*     console.log("Effettuo il render"); */
+  return (
+    <>
+      <h5>Comments:</h5>
+      {props.selected ? (
+        <CommentList array={comments} />
+      ) : (
+        <p>Select a book to view its comments!</p>
+      )}
 
-        <AddComment
-          selected={this.props.selected}
-          addedComment={this.addedComment}
-        />
-      </>
-    );
-  }
-}
+      <AddComment selected={props.selected} addedComment={addedComment} />
+    </>
+  );
+};
 
 export default CommentArea;
